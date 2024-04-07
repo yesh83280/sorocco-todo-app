@@ -14,10 +14,3 @@ db = new sqlite3.Database('./todoapp.db');
 //         });
 //     });
 // }
-
-
-module.exports = {
-    db,
-    createTables
-}
-
