@@ -42,7 +42,7 @@ todoRouter.post(CONSTANTS.ENDPOINT.TODO, async (req, res) => {
 
         const status = await new Promise((resolve, reject) => {
             db.run(`INSERT INTO todos(title, isdone) VALUES(?, ?)`,
-                [data?.Title, data?.IsDone], (_, error) => {
+                [data?.title, data?.isdone], (_, error) => {
                     if (error) {
                         reject(error);
                     }
@@ -96,6 +96,7 @@ todoRouter.put(CONSTANTS.ENDPOINT.TODOID, async (req, res) => {
 todoRouter.delete(CONSTANTS.ENDPOINT.TODOID, async (req, res) => {
 
     const { todoid } = req.params;
+    console.log("Id: ", todoid)
 
     try {
 
@@ -118,6 +119,36 @@ todoRouter.delete(CONSTANTS.ENDPOINT.TODOID, async (req, res) => {
         });
 
     } catch (error) {
+        return res
+            .status(HttpStatus.StatusCodes.BAD_REQUEST)
+            .json({ success: true, message: error });
+    }
+});
+
+todoRouter.delete(CONSTANTS.ENDPOINT.TODO, async (req, res) => {
+
+    const todoList = req.body;
+    console.log("Id: ", todoList.map(val => "?").join(","))
+
+    try {
+
+        const status = await new Promise((resolve, reject) => {
+            db.run(`delete from todos where todoid in (${todoList.map(val => "?").join(",")})`,
+                todoList
+                , (_, error) => {
+                    if (error) {
+                        reject(error);
+                    }
+                    resolve(true);
+                })
+        })
+
+        return res.status(HttpStatus.StatusCodes.OK).json({
+            success: true
+        });
+
+    } catch (error) {
+        console.log("Error Occured: ", error)
         return res
             .status(HttpStatus.StatusCodes.BAD_REQUEST)
             .json({ success: true, message: error });

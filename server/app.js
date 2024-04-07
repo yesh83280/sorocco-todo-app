@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/todoapp/api', todoRouter)
+app.use('/todobackend/api', todoRouter)
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
