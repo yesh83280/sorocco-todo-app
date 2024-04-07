@@ -2,6 +2,8 @@
 The front-end is served on http://localhost:4200/ and the back-end on http://localhost:3001/.<br />
 This app is built on Angular 15 & Node 18 versions.
 
+Sample Preview of App - [Preview](App%20Preview.png)
+
 ## Setup 
 ### Angular v15 Setup 
 
