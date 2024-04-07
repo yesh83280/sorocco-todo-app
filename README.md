@@ -1,8 +1,9 @@
 # To Do List App
-The front-end is served on http://localhost:4200/ and the back-end on http://localhost:3001/.
+The front-end is served on http://localhost:4200/ and the back-end on http://localhost:3001/.<br />
+This app is built on Angular 15 & Node 18 versions.
 
 ## Setup 
-### Angular Setup 
+### Angular v15 Setup 
 
 ```
 cd todo-app 
@@ -10,7 +11,7 @@ npm i
 ng serve
 ```
 
-### Node Setup 
+### Node v18 Setup 
 
 ```
 cd server
